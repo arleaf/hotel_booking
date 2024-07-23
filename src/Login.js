@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+//Logs user in
 const LoginPage = (props) => {
+
     const [username, setUsername] = useState("");
+
+    //Sets username on buttonclick in username textbox
     const addUsername = (event) => {
         setUsername(event.target.value);
     }
+
+    //Logins user once form is submitted
     const handleLogin = () => {
         console.log('handleLogin from ', from);
         console.log('handleLogin navigate ', navigate);
@@ -19,10 +25,9 @@ const LoginPage = (props) => {
 
     let state = location.state;
     let from = state?.from?.pathname ? state.from.pathname : '/';
-    let text = '';
 
-    if (from !== '/') text = <h3> You must login to visit "{from}"</h3>;
 
+    //Returns Login Form
     return (
         <div>
             <form onSubmit={handleLogin}>

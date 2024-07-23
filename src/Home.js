@@ -1,7 +1,7 @@
 import React from "react";
-import { ReactDOM } from "react";
 
-
+//THis is the homepage
+// Routes to signup or login
 const Home = () => {
     return (
         <div class="homepage">

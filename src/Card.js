@@ -1,16 +1,19 @@
 import React from "react";
-import { ReactDOM } from "react";
 import dataSource from "./dataSource";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//Component displays different hotel rooms in card format
 const Card = (props) => {
     const navigate = useNavigate();
     const [username, setUser] = useState(props.username);
+
+    //functions books hotel room and updates API
     const bookRoom = (roomId) => {
         console.log('ID clicked is ' + roomId);
         console.log('user name is ' + username);
 
+        //Cancel booking
         if (props.page == "Reservations") {
             let room = {
                 "roomId": roomId,
@@ -19,6 +22,7 @@ const Card = (props) => {
             }
             cancelBooking(room);
         }
+        //Book room
         else {
             let room = {
                 "roomId": roomId,
@@ -30,7 +34,7 @@ const Card = (props) => {
 
     };
 
-
+    //Cancel room and Update API
     const cancelBooking = async (room) => {
         let response;
         response = await dataSource.put('/rooms', room);
@@ -42,6 +46,7 @@ const Card = (props) => {
 
     }
 
+    //Book room and save it to the API
     const saveBooking = async (room) => {
         let response;
         response = await dataSource.put('/rooms', room);
@@ -52,14 +57,10 @@ const Card = (props) => {
         navigate('/reservations');
 
     }
-    const handleCancelOne = (event, uri) => {
-        console.log(props);
-        console.log('ID clicked is ' + props.roomId);
-        //props.onDelete(props.carId);
-
-    }
 
     return (
+        //Return Card with Hotel room properties
+        //Displays hotel rooms as card component
         <div className="card" style={{ width: '18rem' }}>
             <img src={props.pictureURL} className="card-img-top" alt="title" />
             <div className="card-body">

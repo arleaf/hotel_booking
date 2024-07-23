@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//Sign Up page
 const SignUp = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    //sets username to textbox event
     const addUsername = (event) => {
         setUsername(event.target.value);
     }
+    //sets username to password event
     const addPassword = (event) => {
         setPassword(event.target.value);
     }
 
+    //creates user on form submit
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
@@ -20,14 +24,15 @@ const SignUp = () => {
             username: username,
             password: password,
         };
-
         saveUser(user);
     }
 
     const saveUser = async (user) => {
+        //redirect to available rooms once created
         navigate("/rooms")
     };
 
+    //Signup form, creates user on submit
     return (
         <form onSubmit={handleFormSubmit}>
             <h1>Sign Up</h1>

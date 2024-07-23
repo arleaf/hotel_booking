@@ -3,6 +3,7 @@ import Card from "./Card";
 import dataSource from "./dataSource";
 
 const Rooms = (props) => {
+
     const [roomList, setRoomList] = useState([]);
     const [username, setUser] = useState(props.username);
 
@@ -11,17 +12,21 @@ const Rooms = (props) => {
         loadRooms();
     }, [refresh]);
 
+    //Load Available rooms for booking
     const loadRooms = async () => {
+        //fetch API response and set to list
         const response = await dataSource.get('/rooms');
         setRoomList(response.data);
         console.log('Selected user is ', username);
     }
-    const handleSelectionOne = (roomId, username) => {
+    //Books the room for user
+    const handleBook = (roomId, username) => {
         console.log('Selected ID is ', roomId);
         console.log('Selected user is ', username);
         props.onClick(roomId, username);
     };
 
+    //return list of available rooms as cards and display
     const renderedList = () => {
         return roomList.map((room) => {
             return (
@@ -31,7 +36,7 @@ const Rooms = (props) => {
                     description={room.description}
                     price={room.price}
                     buttonText={"Book!"}
-                    onClick={() => handleSelectionOne(room.roomId, this.username)}
+                    onClick={() => handleBook(room.roomId, this.username)}
                 />
             );
         });
