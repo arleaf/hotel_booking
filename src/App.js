@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import HotelCard from './HotelCard';
+import './App.css'
+import { Route, Routes, BrowserRouter, Link } from 'react-router-dom';
+import NavBar from './NavBar';
+import LoginPage from './Login';
+import PrivateRoute from './PrivateRoute';
+import Home from './Home';
+import Rooms from './Rooms';
+import SignUp from './SignUp';
+import Reservation from './Reservations';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [user, setUser] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const handleLogin = (from, navigate, username) => {
+        console.log('USER is ', user);
+        setIsLoggedIn(true);
+        setUser(username);
+        console.log('in handleLogin from', from);
+        console.log('in handleLogin navigate', navigate);
+        navigate(from, { replace: true });
+
+    };
+
+    return (
+        <BrowserRouter>
+
+            <span className="hotel-name" href='#'>
+                Hotel Booking
+            </span>
+            <NavBar />
+            <Routes>
+                <Route path='/' element={<RootElement />} />
+
+                <Route
+                    path='/reservations'
+                    element={
+                        <PrivateRoute authorized={isLoggedIn} username={user}>
+                            <Reservation username={user} />
+                        </PrivateRoute>
+                    }
+                />
+                <Route path='/login' element={<LoginPage onClick={handleLogin} />} />
+                <Route path='/rooms' element={<Rooms username={user} />} />
+                <Route path='/signUp' element={<SignUp />} />
+            </Routes>
+
+
+
+        </BrowserRouter>
+    )
 }
 
+const RootElement = () => <Home></Home>;
 export default App;
