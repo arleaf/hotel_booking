@@ -4,7 +4,7 @@ const NavBar = () => {
     //Navbar for website
     //includes routes for different functionalities
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light ">
 
             <button
                 className="navbar-toggler"

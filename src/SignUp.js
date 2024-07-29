@@ -39,7 +39,7 @@ const SignUp = () => {
             <div className="form-group">
                 <label for="Email Address">Username</label>
                 <input type="username" className="form-control" id="username" aria-describedby="emailHelp" value={username} onChange={addUsername} />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+
             </div>
             <div className="form-group">
                 <label for="exampleInputPassword1">Password</label>

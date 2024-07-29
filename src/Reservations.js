@@ -37,18 +37,24 @@ const Reservation = (props) => {
     const renderedreserveList = () => {
         return reservelist.map((room) => {
             return (
-                <Card key={room.roomId} username={username} page="Reservations"
-                    pictureURL={room.pictureURL}
-                    roomId={room.roomId}
-                    description={room.description}
-                    price={room.price}
-                    buttonText={"Cancel"}
-                    onClick={() => handleCancelOne(room.roomId, this.username)}
-                />
+                <div style={{
+                    display: 'grid',
+                    placeItems: 'center',
+
+                }}>
+                    <Card key={room.roomId} username={username} page="Reservations"
+                        pictureURL={room.pictureURL}
+                        roomId={room.roomId}
+                        description={room.description}
+                        price={room.price}
+                        buttonText={"Cancel"}
+                        onClick={() => handleCancelOne(room.roomId, this.username)}
+                    />
+                </div>
             );
         });
     };
 
-    return <div className="container"><h1>{text}</h1><br></br>{renderedreserveList()} <footer><Link to='/rooms'>Book Here</Link></footer></div>
+    return <div className="Reservation-container"><h1>{text}</h1><br></br>{renderedreserveList()} <Link to='/rooms'>Book Here</Link></div>
 }
 export default Reservation;

@@ -30,7 +30,7 @@ const App = () => {
         <BrowserRouter>
 
             <span className="hotel-name" href='#'>
-                Hotel Booking
+                Arleth's Hotel
             </span>
             <NavBar />
             <Routes>

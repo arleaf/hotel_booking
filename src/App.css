@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 .homepage {
@@ -29,4 +30,16 @@
     width: 100%;
     display: block;
     font-size: 30px;
+}
+
+.card {
+
+    img {
+        width: 288px;
+        height: 250px;
+    }
+}
+
+.Reservation-container {
+    text-align: center;
 }
